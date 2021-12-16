@@ -27,7 +27,6 @@ class UserController extends AbstractController
     #[Route('/user', name: 'user')]
     public function index(UsersRepository $user): Response
     {
-        $this->header();
        $users =$user->findAll();
        $usersAsArray=[];
        foreach ($users as $user) {
@@ -49,6 +48,8 @@ class UserController extends AbstractController
            ];
         
        };
+       $this->header();
+
         return $this->json([
             'success' => true,
             'data' => $usersAsArray,

@@ -45,13 +45,13 @@ class Users
     private $nationality;
 
     /**
-     * @ORM\ManyToMany(targetEntity=App\Entity\Companies, mappedBy="users_id")
+     * @ORM\ManyToMany(targetEntity=Companies::Class, mappedBy="user_id")
      */
-    private $companies_id;
+    private $company_id;
 
     public function __construct()
     {
-        $this->companies_id = new ArrayCollection();
+        $this->company_id = new ArrayCollection();
     }
 
 
@@ -126,13 +126,13 @@ class Users
      */
     public function getCompanyId(): Collection
     {
-        return $this->companies_id;
+        return $this->company_id;
     }
 
     public function addCompanyId(Companies $companyId): self
     {
-        if (!$this->companies_id->contains($companyId)) {
-            $this->companies_id[] = $companyId;
+        if (!$this->company_id->contains($companyId)) {
+            $this->company_id[] = $companyId;
             $companyId->addUserId($this);
         }
 

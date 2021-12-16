@@ -30,13 +30,13 @@ class Companies
     private $type;
 
     /**
-     * @ORM\ManyToMany(targetEntity=App\Entity\Users, inversedBy="companies_id")
+     * @ORM\ManyToMany(targetEntity=Users::Class, inversedBy="company_id")
      */
-    private $users_id;
+    private $user_id;
 
     public function __construct()
     {
-        $this->users_id = new ArrayCollection();
+        $this->user_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -73,13 +73,13 @@ class Companies
      */
     public function getUserId(): Collection
     {
-        return $this->users_id;
+        return $this->user_id;
     }
 
     public function addUserId(users $userId): self
     {
-        if (!$this->users_id->contains($userId)) {
-            $this->users_id[] = $userId;
+        if (!$this->user_id->contains($userId)) {
+            $this->user_id[] = $userId;
         }
 
         return $this;
@@ -87,7 +87,7 @@ class Companies
 
     public function removeUserId(users $userId): self
     {
-        $this->users_id->removeElement($userId);
+        $this->user_id->removeElement($userId);
 
         return $this;
     }
